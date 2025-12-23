@@ -22,14 +22,43 @@ namespace UsersApp
     public partial class MainWindow : Window
     {
 
-        
+
 
         public MainWindow()
         {
             InitializeComponent();
 
             Database.Initialize();
+
+            //ShowUsers();
+
         }
+
+
+        private void ShowUsers()
+        {
+            var users = Database.GetUsers(); // get all users from SQLite
+
+            if (users.Count == 0)
+            {
+
+                //DisplayRegisteredUsers.Text = "No users found.";
+                return;
+            }
+
+            var sb = new StringBuilder(); // used to build text efficiently
+
+            foreach (var user in users)
+            {
+                sb.AppendLine($"ID: {user.Id}");
+                sb.AppendLine($"Login: {user.Login}");
+                sb.AppendLine($"Email: {user.Email}");
+                sb.AppendLine("------------------------");
+            }
+
+            //DisplayRegisteredUsers.Text = sb.ToString(); // display result in TextBlock
+        }
+
 
         private void Registration_Button(object sender, RoutedEventArgs e)
         {
@@ -55,35 +84,35 @@ namespace UsersApp
 
             if (Password == "")
             {
-              
+
                 TextBoxPassword.Background = Brushes.MistyRose;
                 isError = false;
             }
 
             if (PasswordAgain == "")
             {
-                
+
                 TextBoxPasswordAgain.Background = Brushes.MistyRose;
                 isError = false;
             }
 
             if (Username.Length < 3)
             {
-               
+
                 TextBoxPassword.Background = Brushes.MistyRose;
                 isError = false;
             }
 
             if (Email == "" || !Email.Contains("@") || !Email.Contains("."))
             {
-                
+
                 TextBoxEmail.Background = Brushes.MistyRose;
                 isError = false;
             }
 
             if (Password != PasswordAgain)
             {
-                
+
                 TextBoxPassword.Background = Brushes.MistyRose;
                 isError = false;
             }
@@ -95,10 +124,23 @@ namespace UsersApp
 
                 User user = new User(Username, Email, Password);
                 Database.AddUser(user);
+
+                TextBoxUsername.Text = "";
+                TextBoxEmail.Text = "";
+                TextBoxPassword.Password = "";
+                TextBoxPasswordAgain.Password = "";
+
                 MessageBox.Show("Done, User was created successfully");
-               
+
             }
 
+        }
+
+        private void Open_Login_Window(object sender, RoutedEventArgs e)
+        {
+            AuthWindow authWindow = new AuthWindow();
+            authWindow.Show();
+            this.Close();
         }
     }
 }
