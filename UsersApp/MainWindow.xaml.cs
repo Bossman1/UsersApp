@@ -93,11 +93,9 @@ namespace UsersApp
             {
 
 
-                var user = new User(Username, Email, Password);
-                Database.AddUser(user); 
-              
-
-                MessageBox.Show("Done, User was created");
+                User user = new User(Username, Email, Password);
+                Database.AddUser(user);
+                MessageBox.Show("Done, User was created successfully");
                
             }
 
