@@ -11,8 +11,8 @@
                 <!-- Material Design Theme (this already applies Light/Dark) -->
                 <materialDesign:BundledTheme
                     BaseTheme="Light"
-                    PrimaryColor="Cyan"
-                    SecondaryColor="Orange" />
+                    PrimaryColor="DeepPurple"
+                    SecondaryColor="Lime" />
 
                 <!-- REQUIRED defaults -->
                 <ResourceDictionary

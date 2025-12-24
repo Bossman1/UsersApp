@@ -8,9 +8,19 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Title="Users app" Height="600" Width="800"
-       
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         >
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Width" AutoReverse="False"   Storyboard.TargetName="LoginBtn" From="0" To="300" Duration="0:0:0.2" />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid Background="#87CEFA">
         <Border MinWidth="400" MaxWidth="550" Margin="15,15,15,15" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
             <Border.Effect>
@@ -27,7 +37,7 @@
                 <TextBox x:Name="TextBoxUsername" materialDesign:HintAssist.Hint="Enter username" Style="{StaticResource MaterialDesignFloatingHintTextBox}"  />
                 <PasswordBox x:Name="TextBoxPassword" materialDesign:HintAssist.Hint="Enter password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"  />
 
-                <Button Click="Login_Btn" Style="{StaticResource MaterialDesignRaisedLightButton}" Foreground="White" Content="Login" Margin="20 40 20 20" />
+                <Button Click="Login_Btn" x:Name="LoginBtn" Style="{StaticResource MaterialDesignRaisedLightButton}" Foreground="White" Content="Login" Margin="20 40 20 20" />
             </StackPanel>
         </Border>
     </Grid>

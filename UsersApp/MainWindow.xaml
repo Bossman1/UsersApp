@@ -28,7 +28,7 @@
                 <PasswordBox x:Name="TextBoxPassword" materialDesign:HintAssist.Hint="Enter password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"  />
                 <PasswordBox x:Name="TextBoxPasswordAgain" materialDesign:HintAssist.Hint="Enter password again" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"  />
 
-                <Button Click="Registration_Button" Style="{StaticResource MaterialDesignRaisedLightButton}" Foreground="White" Content="User Registration" Margin="20 40 20 20" />
+                <Button Click="Registration_Button" x:Name="RegBtn" Style="{StaticResource MaterialDesignRaisedLightButton}" Foreground="White" Content="User Registration" Margin="20 40 20 20" />
             </StackPanel>
         </Border>
     </Grid>

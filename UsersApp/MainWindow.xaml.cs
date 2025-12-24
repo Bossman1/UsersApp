@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SQLite;
+using System.Windows.Media.Animation;   
 
 namespace UsersApp
 {
@@ -30,34 +31,12 @@ namespace UsersApp
 
             Database.Initialize();
 
-            //ShowUsers();
+            DoubleAnimation btnAnimation = new DoubleAnimation(0, 300, TimeSpan.FromSeconds(0.2));
+            RegBtn.BeginAnimation(Button.WidthProperty, btnAnimation);
+
 
         }
-
-
-        private void ShowUsers()
-        {
-            var users = Database.GetUsers(); // get all users from SQLite
-
-            if (users.Count == 0)
-            {
-
-                //DisplayRegisteredUsers.Text = "No users found.";
-                return;
-            }
-
-            var sb = new StringBuilder(); // used to build text efficiently
-
-            foreach (var user in users)
-            {
-                sb.AppendLine($"ID: {user.Id}");
-                sb.AppendLine($"Login: {user.Login}");
-                sb.AppendLine($"Email: {user.Email}");
-                sb.AppendLine("------------------------");
-            }
-
-            //DisplayRegisteredUsers.Text = sb.ToString(); // display result in TextBlock
-        }
+ 
 
 
         private void Registration_Button(object sender, RoutedEventArgs e)
